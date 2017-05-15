@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="latest-wrapper">
             <div class="top">
                 <mu-appbar :title="news.date">
                     <mu-icon-button icon="home" slot="left" @click="goHome"/>
@@ -96,10 +96,12 @@
                 }
             },
             _initScroll() {
-                this.storyScroll = new BScroll(this.$refs.storyHook, {
-                    click: true,
-                    probeType: 3
-                });
+                if (this.$refs.storyHook) {
+                    this.storyScroll = new BScroll(this.$refs.storyHook, {
+                        click: true,
+                        probeType: 3
+                    });
+                }
                 /*
                 this.storyScroll.on('scrollStart', () => {
                     this.storyScroll.refresh();
@@ -130,7 +132,7 @@
     };
 </script>
 <style lang="stylus" rel='stylesheet/stylus'>
-    .wrapper
+    .latest-wrapper
         position:absolute
         top:0
         left:0

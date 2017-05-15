@@ -1,6 +1,6 @@
 <template>
-    <div class="wrapper"  ref="themeWrapper">
-            <ul class="theme-wrapper">
+    <div class="theme-wrapper"  ref="themeWrapper">
+            <ul class="themes-list">
                 <li v-for="item in themes" class="theme" @click="showTheme(item.id)">
                     <h1 class="name">{{item.name}}</h1>
                     <img :src="item.thumbnail" class="img"/>
@@ -16,9 +16,18 @@
                 <div class="detail-list" ref="detailHook">
                     <ul>
                         <li v-for="item in detailTheme.stories" class="detail-item">
-                            <span class="title">{{item.title}}</span>
+                            <span class="title" @click="showArticle(item.id)">{{item.title}}</span>
                         </li>
                     </ul>
+                </div>
+            </div>
+            <div class="article" v-show="articleFlag">
+                <div class="article-top">
+                    <mu-appbar  title="内容详情">
+                        <mu-icon-button icon="close" slot="left" @click="closeArticle"/>
+                    </mu-appbar>
+                </div>
+                <div v-html="articleHtml" class="article">
                 </div>
             </div>
     </div>
@@ -30,7 +39,9 @@
                 return {
                     themes: {},
                     detailTheme: {},
-                    themeFlag: false
+                    themeFlag: false,
+                    articleFlag: false,
+                    articleHtml: ''
                 };
             },
             created() {
@@ -60,21 +71,31 @@
                             this.detailTheme = response.body;
                         });
                     },
+                    showArticle(id) {
+                        this.articleHtml = '';
+                        this.articleFlag = true;
+                        this.$http.get(`api/4/news/${id}`).then((response) => {
+                            this.articleHtml = response.body.body;
+                        });
+                    },
                     closeTheme() {
                         this.themeFlag = false;
+                    },
+                    closeArticle() {
+                        this.articleFlag = false;
                     }
                 }
         };
 </script>
 <style lang="stylus" rel='stylesheet/stylus'>
-    .wrapper
+    .theme-wrapper
         position:absolute
         top:0
         left:0
         bottom:56px
         width:100%
         overflow:hidden
-        .theme-wrapper
+        .themes-list
             display:flex
             flex-wrap:wrap
             justify-content:space-between
@@ -126,6 +147,51 @@
                             font-weight:bold
                             color:#2b2b2b
                             text-decoration:underline
+        .article
+            position:fixed
+            top:0
+            left:0
+            bottom:56px
+            width:100%
+            overflow:auto
+            background-color:white
+            z-index:100
+            .article
+                position:absolute
+                top:56px
+                left:0
+                bottom:0
+                width:100%
+            .question
+                padding:5px
+                .question-title
+                    width:100%
+                    font-size:15px
+                    line-height:25px
+                    font-weight:bold
+                    text-align:center
+                    border-bottom:5px solid #fafafa
+                .answer
+                    .meta
+                        height:34px
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        font-size:16px
+                        color: #b8b8b8
+                        .avatar
+                            display:inline-block
+                            width:34px
+                            height:34px
+                            vertical-align:middle
+                    .content
+                        color: #444;
+                        font-size: 17px;
+                        margin: 10px 0 20px;
+                        img
+                            max-width:100%
+                            display:block
+                            margin:30px auto
 
 
 
