@@ -153,7 +153,8 @@
             left:0
             bottom:56px
             width:100%
-            overflow:auto
+            overflow-y:auto
+            overflow-x:hidden
             background-color:white
             z-index:100
             .article
