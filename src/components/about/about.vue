@@ -1,6 +1,6 @@
 <template>
     <div class="about-wrapper">
-        <img class="avatar" src="/static/image/mime.png"/>
+        <img class="avatar" src="./mime.png"/>
         <div class="infowrapper">
             <ul>
                 <li class="item">
