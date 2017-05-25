@@ -9,7 +9,7 @@
                 </li>
                 <li class="item">
                     <span>github地址:</span>
-                    <a href="https://github.com/zhoushaotian/zhihudaily" class="link">https://github.com/zhoushaotian/zhihudaily</a>
+                    <a href="https://github.com/zhoushaotian/zhihudaily" class="link">github.com/zhoushaotian</a>
                 </li>
                 <li class="item">
                     <span>E-mail:</span>
@@ -46,7 +46,6 @@
             font-size:15px
             color:black
             .item
-                height:30px
                 line-height:30px
                 .link
                     color:black

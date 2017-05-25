@@ -1,13 +1,15 @@
 <template>
-    <div class="theme-wrapper"  ref="themeWrapper">
-            <ul class="themes-list">
-                <li v-for="item in themes" class="theme" @click="showTheme(item.id)">
-                    <h1 class="name">{{item.name}}</h1>
-                    <img :src="item.thumbnail" class="img"/>
-                    <span class="des">{{item.description}}</span>
-                </li>
-            </ul>
-            <div class="theme-detail" v-show="themeFlag">
+    <div class="theme-wrapper" >
+            <div  ref="themeWrapper" class="ul-wrapper">
+                <ul class="themes-list">
+                    <li v-for="item in themes" class="theme" @click="showTheme(item.id)">
+                        <h1 class="name">{{item.name}}</h1>
+                        <img :src="item.thumbnail" class="img"/>
+                        <span class="des">{{item.description}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="theme-detail" v-if="themeFlag">
                 <div class="detail-top">
                     <mu-appbar  title="日报详单">
                         <mu-icon-button icon="close" slot="left" @click="closeTheme"/>
@@ -21,7 +23,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="article" v-show="articleFlag">
+            <div class="article" v-if="articleFlag">
                 <div class="article-top">
                     <mu-appbar  title="内容详情">
                         <mu-icon-button icon="close" slot="left" @click="closeArticle"/>
@@ -95,28 +97,33 @@
         bottom:56px
         width:100%
         overflow:hidden
-        .themes-list
-            display:flex
-            flex-wrap:wrap
-            justify-content:space-between
-            width:100%
-            padding:0 10px
-            font-size:12px
-            .theme
-                width:47%
-                margin-top:10px
-                border-radius:10px
-                box-shadow: 5px 5px #dadada
-                overflow:hidden
-                .img
-                    width:100%
-                    height:200px
-                .name
-                    margin:0
-                    text-align:center
-                .des
-                    display:block
-                    padding-left:5px
+        .ul-wrapper
+            position:absolute
+            top:0
+            bottom:0
+            left:0
+            .themes-list
+                display:flex
+                flex-wrap:wrap
+                justify-content:space-between
+                width:100%
+                padding:0 10px
+                font-size:12px
+                .theme
+                    width:47%
+                    margin-top:10px
+                    border-radius:10px
+                    box-shadow: 5px 5px #dadada
+                    overflow:hidden
+                    .img
+                        width:100%
+                        height:200px
+                    .name
+                        margin:0
+                        text-align:center
+                    .des
+                        display:block
+                        padding-left:5px
         .theme-detail
             position:fixed
             top:0
