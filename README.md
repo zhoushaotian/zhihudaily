@@ -1,7 +1,7 @@
 # zhihudaily
-
-> A Vue.js project
-
+移动端知乎日报  
+该项目是我刚开始学习vue的练手项目，使用vue+vue-router+vue-resource+webpack构建的单页应用。  
+组件库使用的museUI，已在阿里云上部署.
 ## Build Setup
 
 ``` bash
@@ -18,4 +18,4 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
